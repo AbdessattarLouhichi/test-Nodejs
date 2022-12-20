@@ -14,13 +14,12 @@ exports.order = async(req, res)=>{
                             
                             const product = await Product.findById(item._id);
 							await Product.findByIdAndUpdate(product._id, { $inc : {quantity : -1}},{new : true})
-                            console.log(product.price)
                            Price = Price + product.price
                            console.log(Price)
 						})
 
 		
-		await Order.create({totalPrice: Price, Products : req.body.products, customer: customer})
+		await Order.create({totalPrice: Price, Products : req.body, customer: customer})
 			.then((order) =>{
 						 res.status(200).json({message : 'Success Order!', order : order})
 					})

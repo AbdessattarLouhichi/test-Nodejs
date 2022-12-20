@@ -9,7 +9,7 @@ const authRole = require('../passport/authRole');
 router.post('/orders/:idUser',passport.authenticate('bearer', { session: false }),authRole(["CUSTOMER"]),order)
 
 // Get order
-router.get('/orders',passport.authenticate('bearer', { session: false }),authRole(["ADMIN"]), findOrders)
+router.get('/orders',passport.authenticate('bearer', { session: false }),authRole(["ADMIN","CUSTOMER"]), findOrders)
 
 // find order by id
 router.get('/orders/:id',passport.authenticate('bearer', { session: false }),authRole(["ADMIN","CUSTOMER"]),findOrderById)

@@ -43,15 +43,15 @@ exports.login = async (req,res)=>{
            return res.status(400).json({message : "user does not exist"})
         }
 
-        const match = await bcrypt.compare(password, user.password);
-        if(!match){return res.status(400).json({message : "check your email or your password!"})};
+        const passMatch = await bcrypt.compare(password, user.password);
+        if(!passMatch){return res.status(400).json({message : "check your email or your password!"})};
         
         // generate user token
         const data={
             userId : user._id,
             userEmail:user.email
         }
-        const token = jwt.sign(data,secret, {expiresIn : '1h'});
+        const token = jwt.sign(data,process.env.SECRET_KEY, {expiresIn : '1h'});
 
 
         return res.status(200).json({user : user, token : token});

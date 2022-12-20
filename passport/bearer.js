@@ -9,7 +9,7 @@ let secret = process.env.SECRET_KEY;
 passport.use(new BearerStrategy(
   (token, done) => {
     const decoded = jwt.verify(token, secret)
-    console.log(decoded)
+    //console.log(decoded)
     User.findById(decoded.userId, function (err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false); }

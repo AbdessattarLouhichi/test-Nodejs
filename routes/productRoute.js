@@ -1,20 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const { findProducts, findProductById, updateProduct, removeProduct } = require('../controllers/product.Controller');
+const { findProducts, findProductById, updateProduct, removeProduct, createProduct } = require('../controllers/product.Controller');
 const authRole = require('../passport/authRole');
 
-// Get customer
+
+// Get product
+router.post('/createProduct', createProduct)
+
+// Get product
 router.get('/products', findProducts)
 
-// find customer by id
+// find product by id
 router.get('/products/:id',findProductById)
 
-//Update customer
-router.put('/products/:id',passport.authenticate('bearer', { session: false }),authRole(["admin"]),updateProduct)
+//Update product
+router.put('/products/:id',passport.authenticate('bearer', { session: false }),authRole(["ADMIN"]),updateProduct)
 
-//Delete customer
+//Delete product
 
-router.delete('/products/:id',passport.authenticate('bearer', { session: false }),authRole(["admin"]),removeProduct)
+router.delete('/products/:id',passport.authenticate('bearer', { session: false }),authRole(["ADMIN"]),removeProduct)
 
 module.exports = router;

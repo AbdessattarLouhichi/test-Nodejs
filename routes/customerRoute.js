@@ -5,16 +5,16 @@ const { findCustomers, findCustomerById, updateCustomer, removeCustomer } = requ
 const authRole = require('../passport/authRole');
 
 // Get customer
-router.get('/customers',passport.authenticate('bearer', { session: false }),authRole(["admin","customer"]), findCustomers)
+router.get('/customers',passport.authenticate('bearer', { session: false }),authRole(["ADMIN","CUSTOMER"]), findCustomers)
 
 // find customer by id
-router.get('/customers/:id',passport.authenticate('bearer', { session: false }),authRole(["admin", "customer"]),findCustomerById)
+router.get('/customers/:id',passport.authenticate('bearer', { session: false }),authRole(["ADMIN","CUSTOMER"]),findCustomerById)
 
 //Update customer
-router.put('/customers/:id',passport.authenticate('bearer', { session: false }),authRole(["admin"]),updateCustomer)
+router.put('/customers/:id',passport.authenticate('bearer', { session: false }),authRole(["ADMIN"]),updateCustomer)
 
 //Delete customer
 
-router.delete('/customers/:id',passport.authenticate('bearer', { session: false }),authRole(["admin"]),removeCustomer)
+router.delete('/customers/:id',passport.authenticate('bearer', { session: false }),authRole(["ADMIN"]),removeCustomer)
 
 module.exports = router;

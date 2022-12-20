@@ -44,7 +44,8 @@ app.get('/dashboard',passport.authenticate('bearer', { session: false }),authRol
 // initialize routes
 app.use('/api',require('./routes/authRoute'));
 app.use('/api',require('./routes/customerRoute'));
-app.use('/api',require('./routes/productRouter'));
+app.use('/api',require('./routes/productRoute'));
+app.use('/api',require('./routes/orderRoute'));
 
 
 //PORT

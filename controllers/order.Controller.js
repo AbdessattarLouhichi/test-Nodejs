@@ -6,10 +6,10 @@ const User = require('../models/authentication');
 
 
 exports.order = async(req, res)=>{
-
+    let Price = 0;
 	try{	
-		let Price = 0;
-		const customer =  await User.findById(req.params.idUser);
+		
+		const customer = req.user._id;
 		await  req.body.map(async (item)=>{ 
                             
                             const product = await Product.findById(item._id);
@@ -19,7 +19,7 @@ exports.order = async(req, res)=>{
 						})
 
 		
-		await Order.create({totalPrice: Price, Products : req.body, customer: customer})
+		 Order.create({totalPrice: Price, Products : req.body, customer: customer})
 			.then((order) =>{
 						 res.status(200).json({message : 'Success Order!', order : order})
 					})

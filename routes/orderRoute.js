@@ -6,7 +6,7 @@ const authRole = require('../passport/authRole');
 
 
 //Create Order
-router.post('/orders/:idUser',passport.authenticate('bearer', { session: false }),order)
+router.post('/orders',passport.authenticate('bearer', { session: false }),order)
 
 // Get order
 router.get('/orders',passport.authenticate('bearer', { session: false }),authRole("ADMIN","CUSTOMER"), findOrders)

@@ -15,10 +15,10 @@ router.get('/products', findProducts)
 router.get('/products/:id',findProductById)
 
 //Update product
-router.put('/products/:id',passport.authenticate('bearer', { session: false }),authRole(["ADMIN"]),updateProduct)
+router.put('/products/:id',passport.authenticate('bearer', { session: false }),authRole("ADMIN"),updateProduct)
 
 //Delete product
 
-router.delete('/products/:id',passport.authenticate('bearer', { session: false }),authRole(["ADMIN"]),removeProduct)
+router.delete('/products/:id',passport.authenticate('bearer', { session: false }),authRole("ADMIN"),removeProduct)
 
 module.exports = router;

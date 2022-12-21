@@ -6,17 +6,17 @@ const authRole = require('../passport/authRole');
 
 
 //Create Order
-router.post('/orders/:idUser',passport.authenticate('bearer', { session: false }),authRole(["CUSTOMER"]),order)
+router.post('/orders/:idUser',passport.authenticate('bearer', { session: false }),order)
 
 // Get order
-router.get('/orders',passport.authenticate('bearer', { session: false }),authRole(["ADMIN","CUSTOMER"]), findOrders)
+router.get('/orders',passport.authenticate('bearer', { session: false }),authRole("ADMIN","CUSTOMER"), findOrders)
 
 // find order by id
-router.get('/orders/:id',passport.authenticate('bearer', { session: false }),authRole(["ADMIN","CUSTOMER"]),findOrderById)
+router.get('/orders/:id',passport.authenticate('bearer', { session: false }),authRole("ADMIN","CUSTOMER"),findOrderById)
 
 
 //Delete order
 
-router.delete('/order/:id',passport.authenticate('bearer', { session: false }),authRole(["ADMIN"]),removeOrder)
+router.delete('/order/:id',passport.authenticate('bearer', { session: false }),authRole("ADMIN"),removeOrder)
 
 module.exports = router;

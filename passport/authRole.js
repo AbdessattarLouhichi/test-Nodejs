@@ -1,9 +1,9 @@
 const User = require('../models/authentication');
-module.exports = function authRole(role){
+module.exports = function authRole(Role){ 
     return (req,res,next)=>{
-        const user =  User.findById(req.params.id)
-        console.log(user)
-        if (user.role !==role) {
+        const user =  req.user;
+        //console.log(user.role)
+        if (user.role !== Role) {
             res.status(401).json('Not allowed')
         } else {
             next()

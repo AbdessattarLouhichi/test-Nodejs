@@ -6,7 +6,7 @@ const authRole = require('../passport/authRole');
 
 
 // Get product
-router.post('/createProduct', createProduct)
+router.post('/createProduct',passport.authenticate('bearer', { session: false }),authRole("ADMIN"),createProduct)
 
 // Get product
 router.get('/products', findProducts)

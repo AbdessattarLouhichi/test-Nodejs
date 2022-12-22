@@ -37,7 +37,7 @@ app.get('/home',(req, res)=>{
 }); 
 
 // dashboard 
-app.get('/dashboard',passport.authenticate('bearer', { session: false }),authRole(["admin"]),(req,res)=>{
+app.get('/dashboard',passport.authenticate('bearer', { session: false }),authRole("admin"),(req,res)=>{
     res.status(200).render('dashboard')
 })
 
